@@ -66,7 +66,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/resultCard"
-        app:layout_constraintWidth_percent="0.35">
+        app:layout_constraintWidth_percent="0.38">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -80,84 +80,101 @@
                 android:orientation="vertical"
                 android:padding="12dp">
 
+                <!-- 1. 基礎資訊 -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnDeviceInfo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="📱 1. 顯示裝置資訊"
-                    android:textSize="14sp"
+                    android:textSize="13sp"
                     app:cornerRadius="8dp"
-                    app:icon="@android:drawable/ic_menu_info_details"
-                    app:iconGravity="start"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
+                <!-- 2. 綜合等級測試 (最重要) -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_secure_level_test"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="🛡️ 2. 檢測最高安全等級"
+                    android:textSize="13sp"
+                    app:cornerRadius="8dp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+                <!-- 3. TEE 測試 -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnTestTEE"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="🛡️ 2. 測試 TEE (TrustZone)"
-                    android:textSize="14sp"
+                    android:text="🛡️ 3. 測試 TEE (TrustZone)"
+                    android:textSize="13sp"
                     app:cornerRadius="8dp"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
+                <!-- 4. StrongBox 測試 -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnTestStrongBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="🏆 3. 測試 StrongBox"
-                    android:textSize="14sp"
+                    android:text="🏆 4. 測試 StrongBox"
+                    android:textSize="13sp"
                     app:cornerRadius="8dp"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
+                <!-- 5. HUK 測試 -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnTestHUK"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="🔑 4. 測試 HUK (硬體唯一金鑰)"
-                    android:textSize="14sp"
+                    android:text="🔑 5. 測試 HUK (硬體金鑰)"
+                    android:textSize="13sp"
                     app:cornerRadius="8dp"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnTestEncryption"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="🔐 5. 測試加解密功能"
-                    android:textSize="14sp"
-                    app:cornerRadius="8dp"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnCheckAllKeys"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="🔍 6. 檢查所有密鑰詳細資訊"
-                    android:textSize="14sp"
-                    app:cornerRadius="8dp"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
-
+                <!-- 6. HUK 說明 (跟在測試後面) -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnExplainHUK"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="📚 7. HUK 原理說明"
-                    android:textSize="14sp"
+                    android:text="📚 6. HUK 原理說明"
+                    android:textSize="13sp"
                     app:cornerRadius="8dp"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
+                <!-- 7. 加解密驗證 -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTestEncryption"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="🔐 7. 測試加解密功能"
+                    android:textSize="13sp"
+                    app:cornerRadius="8dp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+                <!-- 8. 檢查所有密鑰 -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCheckAllKeys"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="🔍 8. 檢查所有密鑰資訊"
+                    android:textSize="13sp"
+                    app:cornerRadius="8dp"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+                <!-- 清除按鈕 (危險操作放最後) -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnClearKeys"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="16dp"
                     android:text="🗑️ 清除所有測試密鑰"
-                    android:textSize="14sp"
+                    android:textSize="13sp"
                     app:cornerRadius="8dp"
                     app:backgroundTint="#F44336"
                     style="@style/Widget.MaterialComponents.Button"/>
@@ -212,10 +229,10 @@
                     android:id="@+id/resultTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="歡迎使用 Android Keystore 測試工具\n請依序點擊按鈕進行測試\n\n💡 提示：\n• 建議從「顯示裝置資訊」開始\n• 依序執行測試以獲得完整分析\n• 測試結果會顯示在此區域"
+                    android:text="歡迎使用 Android Keystore 測試工具\n請依序點擊左側按鈕進行測試\n\n💡 提示：\n• 建議從「顯示裝置資訊」開始\n• 依序執行測試以獲得完整分析\n• 測試結果會顯示在此區域"
                     android:textSize="13sp"
                     android:textColor="#333333"
-                    android:lineSpacingExtra="2dp"
+                    android:lineSpacingExtra="4dp"
                     android:fontFamily="monospace"/>
 
             </ScrollView>

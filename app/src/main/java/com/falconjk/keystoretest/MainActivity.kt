@@ -2,14 +2,12 @@ package com.falconjk.keystoretest
 
 import android.os.Bundle
 import android.widget.ScrollView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.button.MaterialButton
+import com.falconjk.keystoretest.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var resultTextView: TextView
-    private lateinit var resultScrollView: ScrollView
+    private lateinit var binding: ActivityMainBinding
 
     // 測試模組
     private val deviceInfoTester = DeviceInfoTester()
@@ -20,52 +18,55 @@ class MainActivity : AppCompatActivity() {
     private val keyInfoChecker = KeyInfoChecker()
     private val hukExplainer = HUKExplainer()
     private val keyManager = KeyManager()
+    private val secureLevelTester = SecureLevelTester()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // 初始化 UI
-        initViews()
         setupListeners()
     }
 
-    private fun initViews() {
-        resultTextView = findViewById(R.id.resultTextView)
-        resultScrollView = findViewById(R.id.resultScrollView)
-    }
-
     private fun setupListeners() {
-        findViewById<MaterialButton>(R.id.btnDeviceInfo).setOnClickListener {
+        binding.btnDeviceInfo.setOnClickListener {
+            showResult(deviceInfoTester.getDeviceInfo())
+        }
+        binding.btnDeviceInfo.setOnClickListener {
             showResult(deviceInfoTester.getDeviceInfo())
         }
 
-        findViewById<MaterialButton>(R.id.btnTestTEE).setOnClickListener {
-            appendResult(teeTester.testTEE())
+        binding.btnTestTEE.setOnClickListener {
+            showResult(teeTester.testTEE())
         }
 
-        findViewById<MaterialButton>(R.id.btnTestStrongBox).setOnClickListener {
-            appendResult(strongBoxTester.testStrongBox())
+        binding.btnTestStrongBox.setOnClickListener {
+            showResult(strongBoxTester.testStrongBox())
         }
 
-        findViewById<MaterialButton>(R.id.btnTestHUK).setOnClickListener {
-            appendResult(hukTester.testHUK())
+        binding.btnTestHUK.setOnClickListener {
+            showResult(hukTester.testHUK())
         }
 
-        findViewById<MaterialButton>(R.id.btnTestEncryption).setOnClickListener {
-            appendResult(encryptionTester.testEncryption())
+        binding.btnTestEncryption.setOnClickListener {
+            showResult(encryptionTester.testEncryption())
         }
 
-        findViewById<MaterialButton>(R.id.btnCheckAllKeys).setOnClickListener {
-            appendResult(keyInfoChecker.checkAllKeysInfo())
+        binding.btnCheckAllKeys.setOnClickListener {
+            showResult(keyInfoChecker.checkAllKeysInfo())
         }
 
-        findViewById<MaterialButton>(R.id.btnExplainHUK).setOnClickListener {
+        binding.btnExplainHUK.setOnClickListener {
             showResult(hukExplainer.getExplanation())
         }
 
-        findViewById<MaterialButton>(R.id.btnClearKeys).setOnClickListener {
-            appendResult(keyManager.clearAllKeys())
+        binding.btnClearKeys.setOnClickListener {
+            showResult(keyManager.clearAllKeys())
+        }
+
+        binding.btnSecureLevelTest.setOnClickListener {
+            showResult(secureLevelTester.testSecureLevel())
         }
     }
 
@@ -74,7 +75,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun showResult(text: String) {
         runOnUiThread {
-            resultTextView.text = text
+            binding.resultTextView.text = text
             scrollToBottom()
         }
     }
@@ -84,13 +85,12 @@ class MainActivity : AppCompatActivity() {
      */
     private fun appendResult(text: String) {
         runOnUiThread {
-//            val currentText = resultTextView.text.toString()
-//            resultTextView.text = if (currentText.isEmpty()) {
-//                text
-//            } else {
-//                "$currentText\n$text"
-//            }
-            resultTextView.text = text
+            val currentText = binding.resultTextView.text.toString()
+            binding.resultTextView.text = if (currentText.isEmpty()) {
+                text
+            } else {
+                "$currentText\n$text"
+            }
             scrollToBottom()
         }
     }
@@ -99,8 +99,8 @@ class MainActivity : AppCompatActivity() {
      * 滾動到底部
      */
     private fun scrollToBottom() {
-        resultTextView.post {
-            resultScrollView.fullScroll(ScrollView.FOCUS_DOWN)
+        binding.resultTextView.post {
+            binding.resultScrollView.fullScroll(ScrollView.FOCUS_DOWN)
         }
     }
 }
