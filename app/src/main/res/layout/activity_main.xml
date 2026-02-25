@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
+    android:background="@color/background"
     tools:context=".MainActivity">
 
     <!-- 標題區域 -->
@@ -16,6 +16,7 @@
         android:layout_margin="16dp"
         app:cardElevation="4dp"
         app:cardCornerRadius="12dp"
+        app:cardBackgroundColor="@color/card_background"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -24,8 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp"
-            android:background="@android:color/white">
+            android:padding="16dp">
 
             <TextView
                 android:id="@+id/titleText"
@@ -34,7 +34,7 @@
                 android:text="🔐 Android Keystore 安全測試"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                android:textColor="#1976D2"
+                android:textColor="@color/title_text_color"
                 android:gravity="center"/>
 
             <TextView
@@ -44,7 +44,7 @@
                 android:layout_marginTop="4dp"
                 android:text="TEE / StrongBox / HUK 測試工具"
                 android:textSize="14sp"
-                android:textColor="#666666"
+                android:textColor="@color/subtitle_text_color"
                 android:gravity="center"/>
 
         </LinearLayout>
@@ -62,6 +62,7 @@
         android:layout_marginBottom="16dp"
         app:cardElevation="4dp"
         app:cardCornerRadius="12dp"
+        app:cardBackgroundColor="@color/card_background"
         app:layout_constraintTop_toBottomOf="@id/titleCard"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,8 +71,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/white">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:id="@+id/buttonContainer"
@@ -87,7 +87,11 @@
                     android:layout_height="wrap_content"
                     android:text="📱 1. 顯示裝置資訊"
                     android:textSize="13sp"
+                    android:textColor="@color/button_text_color"
                     app:cornerRadius="8dp"
+                    app:strokeColor="@color/button_stroke_color"
+                    app:strokeWidth="1dp"
+                    app:backgroundTint="@color/button_background"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
                 <!-- 2. 綜合等級測試 (最重要) -->
@@ -98,7 +102,11 @@
                     android:layout_marginTop="8dp"
                     android:text="🛡️ 2. 檢測最高安全等級"
                     android:textSize="13sp"
+                    android:textColor="@color/button_text_color"
                     app:cornerRadius="8dp"
+                    app:strokeColor="@color/button_stroke_color"
+                    app:strokeWidth="1dp"
+                    app:backgroundTint="@color/button_background"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
                 <!-- 3. TEE 測試 -->
@@ -109,7 +117,11 @@
                     android:layout_marginTop="8dp"
                     android:text="🛡️ 3. 測試 TEE (TrustZone)"
                     android:textSize="13sp"
+                    android:textColor="@color/button_text_color"
                     app:cornerRadius="8dp"
+                    app:strokeColor="@color/button_stroke_color"
+                    app:strokeWidth="1dp"
+                    app:backgroundTint="@color/button_background"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
                 <!-- 4. StrongBox 測試 -->
@@ -120,7 +132,11 @@
                     android:layout_marginTop="8dp"
                     android:text="🏆 4. 測試 StrongBox"
                     android:textSize="13sp"
+                    android:textColor="@color/button_text_color"
                     app:cornerRadius="8dp"
+                    app:strokeColor="@color/button_stroke_color"
+                    app:strokeWidth="1dp"
+                    app:backgroundTint="@color/button_background"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
                 <!-- 5. HUK 測試 -->
@@ -131,7 +147,11 @@
                     android:layout_marginTop="8dp"
                     android:text="🔑 5. 測試 HUK (硬體金鑰)"
                     android:textSize="13sp"
+                    android:textColor="@color/button_text_color"
                     app:cornerRadius="8dp"
+                    app:strokeColor="@color/button_stroke_color"
+                    app:strokeWidth="1dp"
+                    app:backgroundTint="@color/button_background"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
                 <!-- 6. HUK 說明 (跟在測試後面) -->
@@ -142,7 +162,11 @@
                     android:layout_marginTop="8dp"
                     android:text="📚 6. HUK 原理說明"
                     android:textSize="13sp"
+                    android:textColor="@color/button_text_color"
                     app:cornerRadius="8dp"
+                    app:strokeColor="@color/button_stroke_color"
+                    app:strokeWidth="1dp"
+                    app:backgroundTint="@color/button_background"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
                 <!-- 7. 加解密驗證 -->
@@ -153,7 +177,11 @@
                     android:layout_marginTop="8dp"
                     android:text="🔐 7. 測試加解密功能"
                     android:textSize="13sp"
+                    android:textColor="@color/button_text_color"
                     app:cornerRadius="8dp"
+                    app:strokeColor="@color/button_stroke_color"
+                    app:strokeWidth="1dp"
+                    app:backgroundTint="@color/button_background"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
                 <!-- 8. 檢查所有密鑰 -->
@@ -164,7 +192,11 @@
                     android:layout_marginTop="8dp"
                     android:text="🔍 8. 檢查所有密鑰資訊"
                     android:textSize="13sp"
+                    android:textColor="@color/button_text_color"
                     app:cornerRadius="8dp"
+                    app:strokeColor="@color/button_stroke_color"
+                    app:strokeWidth="1dp"
+                    app:backgroundTint="@color/button_background"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
                 <!-- 清除按鈕 (危險操作放最後) -->
@@ -176,7 +208,7 @@
                     android:text="🗑️ 清除所有測試密鑰"
                     android:textSize="13sp"
                     app:cornerRadius="8dp"
-                    app:backgroundTint="#F44336"
+                    app:backgroundTint="@color/delete_button_background"
                     style="@style/Widget.MaterialComponents.Button"/>
 
             </LinearLayout>
@@ -196,6 +228,7 @@
         android:layout_marginBottom="16dp"
         app:cardElevation="4dp"
         app:cardCornerRadius="12dp"
+        app:cardBackgroundColor="@color/card_background"
         app:layout_constraintTop_toBottomOf="@id/titleCard"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/buttonCard"
@@ -204,8 +237,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="@android:color/white">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
@@ -213,9 +245,9 @@
                 android:text="📋 測試結果"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="#333333"
+                android:textColor="@color/result_header_text_color"
                 android:padding="12dp"
-                android:background="#E3F2FD"/>
+                android:background="@color/result_header_background"/>
 
             <ScrollView
                 android:id="@+id/resultScrollView"
@@ -231,7 +263,7 @@
                     android:layout_height="wrap_content"
                     android:text="歡迎使用 Android Keystore 測試工具\n請依序點擊左側按鈕進行測試\n\n💡 提示：\n• 建議從「顯示裝置資訊」開始\n• 依序執行測試以獲得完整分析\n• 測試結果會顯示在此區域"
                     android:textSize="13sp"
-                    android:textColor="#333333"
+                    android:textColor="@color/result_text_color"
                     android:lineSpacingExtra="4dp"
                     android:fontFamily="monospace"/>
 
