@@ -11,9 +11,6 @@ import javax.crypto.SecretKeyFactory
 
 class TEETester {
 
-    private val KEYSTORE_PROVIDER = "AndroidKeyStore"
-    private val KEY_ALIAS_TEE = "test_tee_key"
-
     fun testTEE(): String {
         val builder = StringBuilder()
 
@@ -31,11 +28,11 @@ class TEETester {
         try {
             val keyGenerator = KeyGenerator.getInstance(
                 KeyProperties.KEY_ALGORITHM_AES,
-                KEYSTORE_PROVIDER
+                Keys.KEYSTORE_PROVIDER
             )
 
             val keyGenParameterSpec = KeyGenParameterSpec.Builder(
-                KEY_ALIAS_TEE,
+                Keys.KEY_ALIAS_TEE,
                 KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
             )
                 .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
@@ -49,7 +46,7 @@ class TEETester {
 
             builder.appendLine("✅ 測試結果:")
             builder.appendLine("  ✓ AES-256 密鑰生成成功")
-            builder.appendLine("  ✓ 密鑰別名: $KEY_ALIAS_TEE")
+            builder.appendLine("  ✓ 密鑰別名: $Keys.KEY_ALIAS_TEE")
 
             val keyInfo = getKeyInfo(secretKey)
 
@@ -84,7 +81,7 @@ class TEETester {
     private fun getKeyInfo(secretKey: SecretKey): KeyInfo {
         val factory = SecretKeyFactory.getInstance(
             secretKey.algorithm,
-            KEYSTORE_PROVIDER
+            Keys.KEYSTORE_PROVIDER
         )
         return factory.getKeySpec(secretKey, KeyInfo::class.java) as KeyInfo
     }

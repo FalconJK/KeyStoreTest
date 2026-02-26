@@ -4,8 +4,6 @@ import java.security.KeyStore
 
 class KeyManager {
 
-    private val KEYSTORE_PROVIDER = "AndroidKeyStore"
-
     fun clearAllKeys(): String {
         val builder = StringBuilder()
 
@@ -14,7 +12,7 @@ class KeyManager {
         builder.appendLine("╚═══════════════════════════════════════╝\n")
 
         try {
-            val keyStore = KeyStore.getInstance(KEYSTORE_PROVIDER)
+            val keyStore = KeyStore.getInstance(Keys.KEYSTORE_PROVIDER)
             keyStore.load(null)
 
             val allAliases = keyStore.aliases().toList()

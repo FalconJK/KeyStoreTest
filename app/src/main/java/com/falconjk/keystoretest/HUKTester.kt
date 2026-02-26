@@ -4,6 +4,7 @@ import android.os.Build
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyInfo
 import android.security.keystore.KeyProperties
+import android.util.Log
 import java.util.Base64
 import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
@@ -13,11 +14,10 @@ import javax.crypto.spec.GCMParameterSpec
 
 class HUKTester {
 
-    private val KEYSTORE_PROVIDER = "AndroidKeyStore"
-    private val KEY_ALIAS_HUK_TEST = "test_huk_verification_key"
-
     fun testHUK(): String {
         val builder = StringBuilder()
+
+        Log.d("test", Keys.KEYSTORE_PROVIDER)
 
         builder.appendLine("╔═══════════════════════════════════════╗")
         builder.appendLine("║    測試 HUK (Hardware Unique Key)    ║")
@@ -35,11 +35,11 @@ class HUKTester {
         try {
             val keyGenerator = KeyGenerator.getInstance(
                 KeyProperties.KEY_ALGORITHM_AES,
-                KEYSTORE_PROVIDER
+                Keys.KEYSTORE_PROVIDER
             )
 
             val keyGenParameterSpec = KeyGenParameterSpec.Builder(
-                KEY_ALIAS_HUK_TEST,
+                Keys.KEY_ALIAS_HUK_TEST,
                 KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
             )
                 .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
@@ -47,7 +47,6 @@ class HUKTester {
                 .setKeySize(256)
                 .setUserAuthenticationRequired(false)
                 .build()
-
             keyGenerator.init(keyGenParameterSpec)
             val secretKey = keyGenerator.generateKey()
 
@@ -107,7 +106,7 @@ class HUKTester {
                 builder.appendLine("    ↓ 派生")
                 builder.appendLine("  Keymaster Key")
                 builder.appendLine("    ↓ 派生")
-                builder.appendLine("  你的應用密鑰 ($KEY_ALIAS_HUK_TEST)")
+                builder.appendLine("  你的應用密鑰 (${Keys.KEY_ALIAS_HUK_TEST})")
                 builder.appendLine("  ")
                 builder.appendLine("  ✓ 每一層都在 TEE 中進行")
                 builder.appendLine("  ✓ HUK 確保密鑰與裝置綁定\n")
@@ -150,7 +149,7 @@ class HUKTester {
     private fun getKeyInfo(secretKey: SecretKey): KeyInfo {
         val factory = SecretKeyFactory.getInstance(
             secretKey.algorithm,
-            KEYSTORE_PROVIDER
+            Keys.KEYSTORE_PROVIDER
         )
         return factory.getKeySpec(secretKey, KeyInfo::class.java) as KeyInfo
     }

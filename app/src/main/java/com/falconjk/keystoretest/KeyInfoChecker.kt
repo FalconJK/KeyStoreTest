@@ -9,8 +9,6 @@ import javax.crypto.SecretKeyFactory
 
 class KeyInfoChecker {
 
-    private val KEYSTORE_PROVIDER = "AndroidKeyStore"
-
     fun checkAllKeysInfo(): String {
         val builder = StringBuilder()
 
@@ -19,7 +17,7 @@ class KeyInfoChecker {
         builder.appendLine("╚═══════════════════════════════════════╝\n")
 
         try {
-            val keyStore = KeyStore.getInstance(KEYSTORE_PROVIDER)
+            val keyStore = KeyStore.getInstance(Keys.KEYSTORE_PROVIDER)
             keyStore.load(null)
 
             val aliases = keyStore.aliases().toList()
@@ -91,7 +89,7 @@ class KeyInfoChecker {
     private fun getKeyInfo(secretKey: SecretKey): KeyInfo {
         val factory = SecretKeyFactory.getInstance(
             secretKey.algorithm,
-            KEYSTORE_PROVIDER
+            Keys.KEYSTORE_PROVIDER
         )
         return factory.getKeySpec(secretKey, KeyInfo::class.java) as KeyInfo
     }

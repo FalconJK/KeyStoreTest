@@ -10,9 +10,6 @@ import javax.crypto.SecretKeyFactory
 
 class SecureLevelTester {
 
-    private val KEYSTORE_PROVIDER = "AndroidKeyStore"
-    private val KEY_ALIAS_LEVEL_TEST = "test_secure_level_key"
-
     fun testSecureLevel(): String {
         val builder = StringBuilder()
 
@@ -28,7 +25,7 @@ class SecureLevelTester {
         try {
             val keyGenerator = KeyGenerator.getInstance(
                 KeyProperties.KEY_ALGORITHM_AES,
-                KEYSTORE_PROVIDER
+                Keys.KEYSTORE_PROVIDER
             )
 
             var isStrongBoxRequested = false
@@ -41,7 +38,7 @@ class SecureLevelTester {
                 try {
                     builder.appendLine("  1. 嘗試請求 StrongBox (獨立安全晶片)...")
                     val keyGenParameterSpec = KeyGenParameterSpec.Builder(
-                        KEY_ALIAS_LEVEL_TEST,
+                        Keys.KEY_ALIAS_LEVEL_TEST,
                         KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
                     )
                         .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
@@ -68,7 +65,7 @@ class SecureLevelTester {
                 builder.appendLine("  2. 降級嘗試標準 TEE 環境...")
                 try {
                     val keyGenParameterSpec = KeyGenParameterSpec.Builder(
-                        KEY_ALIAS_LEVEL_TEST,
+                        Keys.KEY_ALIAS_LEVEL_TEST,
                         KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
                     )
                         .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
@@ -89,7 +86,7 @@ class SecureLevelTester {
             // 步驟 2: 檢查 KeyInfo
             val factory = SecretKeyFactory.getInstance(
                 secretKey!!.algorithm,
-                KEYSTORE_PROVIDER
+                Keys.KEYSTORE_PROVIDER
             )
             val keyInfo = factory.getKeySpec(secretKey, KeyInfo::class.java) as KeyInfo
 

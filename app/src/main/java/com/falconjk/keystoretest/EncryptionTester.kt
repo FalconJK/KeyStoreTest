@@ -9,11 +9,6 @@ import javax.crypto.spec.GCMParameterSpec
 
 class EncryptionTester {
 
-    private val KEYSTORE_PROVIDER = "AndroidKeyStore"
-    private val KEY_ALIAS_TEE = "test_tee_key"
-    private val KEY_ALIAS_STRONGBOX = "test_strongbox_key"
-    private val KEY_ALIAS_HUK_TEST = "test_huk_verification_key"
-
     fun testEncryption(): String {
         val builder = StringBuilder()
 
@@ -22,13 +17,12 @@ class EncryptionTester {
         builder.appendLine("╚═══════════════════════════════════════╝\n")
 
         try {
-            val keyStore = KeyStore.getInstance(KEYSTORE_PROVIDER)
-            keyStore.load(null)
+            val keyStore = KeyStore.getInstance(Keys.KEYSTORE_PROVIDER).apply { load(null) }
 
             val keyAlias = when {
-                keyStore.containsAlias(KEY_ALIAS_TEE) -> KEY_ALIAS_TEE
-                keyStore.containsAlias(KEY_ALIAS_STRONGBOX) -> KEY_ALIAS_STRONGBOX
-                keyStore.containsAlias(KEY_ALIAS_HUK_TEST) -> KEY_ALIAS_HUK_TEST
+                keyStore.containsAlias(Keys.KEY_ALIAS_TEE) -> Keys.KEY_ALIAS_TEE
+                keyStore.containsAlias(Keys.KEY_ALIAS_STRONGBOX) -> Keys.KEY_ALIAS_STRONGBOX
+                keyStore.containsAlias(Keys.KEY_ALIAS_HUK_TEST) -> Keys.KEY_ALIAS_HUK_TEST
                 else -> {
                     builder.appendLine("❌ 找不到測試密鑰")
                     builder.appendLine("💡 請先執行「測試 TEE」生成密鑰")
@@ -90,7 +84,7 @@ class EncryptionTester {
     private fun getKeyInfo(secretKey: SecretKey): KeyInfo {
         val factory = SecretKeyFactory.getInstance(
             secretKey.algorithm,
-            KEYSTORE_PROVIDER
+            Keys.KEYSTORE_PROVIDER
         )
         return factory.getKeySpec(secretKey, KeyInfo::class.java) as KeyInfo
     }
