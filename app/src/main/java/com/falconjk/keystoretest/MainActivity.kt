@@ -4,6 +4,16 @@ import android.os.Bundle
 import android.widget.ScrollView
 import androidx.appcompat.app.AppCompatActivity
 import com.falconjk.keystoretest.databinding.ActivityMainBinding
+import com.falconjk.keystoretest.test.AsymmetricTester
+import com.falconjk.keystoretest.test.DeviceInfoTester
+import com.falconjk.keystoretest.test.EncryptionTester
+import com.falconjk.keystoretest.test.HUKExplainer
+import com.falconjk.keystoretest.test.HUKTester
+import com.falconjk.keystoretest.test.KeyInfoChecker
+import com.falconjk.keystoretest.test.KeyManager
+import com.falconjk.keystoretest.test.SecureLevelTester
+import com.falconjk.keystoretest.test.StrongBoxTester
+import com.falconjk.keystoretest.test.TEETester
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private val hukExplainer = HUKExplainer()
     private val keyManager = KeyManager()
     private val secureLevelTester = SecureLevelTester()
+    private val asymmetricTester = AsymmetricTester()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +78,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnSecureLevelTest.setOnClickListener {
             showResult(secureLevelTester.testSecureLevel())
+        }
+
+        binding.btnTestAsymmetric.setOnClickListener {
+            showResult(asymmetricTester.testAsymmetric())
         }
     }
 

@@ -1,5 +1,6 @@
-package com.falconjk.keystoretest
+package com.falconjk.keystoretest.test
 
+import com.falconjk.keystoretest.Keys
 import java.security.KeyStore
 
 class KeyManager {

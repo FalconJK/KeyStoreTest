@@ -1,4 +1,4 @@
-package com.falconjk.keystoretest
+package com.falconjk.keystoretest.test
 
 class HUKExplainer {
 

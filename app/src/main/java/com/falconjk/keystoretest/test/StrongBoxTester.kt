@@ -1,9 +1,10 @@
-package com.falconjk.keystoretest
+package com.falconjk.keystoretest.test
 
 import android.os.Build
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyInfo
 import android.security.keystore.KeyProperties
+import com.falconjk.keystoretest.Keys
 import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
 import javax.crypto.SecretKeyFactory
@@ -53,7 +54,7 @@ class StrongBoxTester {
 
             builder.appendLine("✅ 測試結果:")
             builder.appendLine("  ✓ StrongBox 密鑰生成成功")
-            builder.appendLine("  ✓ 密鑰別名: $Keys.KEY_ALIAS_STRONGBOX")
+            builder.appendLine("  ✓ 密鑰別名: ${Keys}.KEY_ALIAS_STRONGBOX")
 
             val keyInfo = getKeyInfo(secretKey)
 

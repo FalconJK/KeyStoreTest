@@ -1,11 +1,10 @@
-package com.falconjk.keystoretest
+package com.falconjk.keystoretest.test
 
-import android.os.Build
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyInfo
 import android.security.keystore.KeyProperties
 import android.util.Log
-import java.util.Base64
+import com.falconjk.keystoretest.Keys
 import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey

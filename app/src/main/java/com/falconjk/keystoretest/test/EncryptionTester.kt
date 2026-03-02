@@ -1,6 +1,7 @@
-package com.falconjk.keystoretest
+package com.falconjk.keystoretest.test
 
 import android.security.keystore.KeyInfo
+import com.falconjk.keystoretest.Keys
 import java.security.KeyStore
 import javax.crypto.Cipher
 import javax.crypto.SecretKey

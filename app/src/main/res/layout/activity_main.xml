@@ -199,6 +199,22 @@
                     app:backgroundTint="@color/button_background"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
+                <!-- 9. 非對稱加密測試 -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTestAsymmetric"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="🔑 9. 測試非對稱加密 (RSA)"
+                    android:textSize="13sp"
+                    android:textColor="@color/button_text_color"
+                    app:cornerRadius="8dp"
+                    app:strokeColor="@color/button_stroke_color"
+                    app:strokeWidth="1dp"
+                    app:backgroundTint="@color/button_background"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+
                 <!-- 清除按鈕 (危險操作放最後) -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnClearKeys"
